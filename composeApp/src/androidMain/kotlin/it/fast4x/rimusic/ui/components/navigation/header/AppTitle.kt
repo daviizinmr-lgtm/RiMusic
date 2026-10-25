@@ -3,17 +3,14 @@ package it.fast4x.rimusic.ui.components.navigation.header
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.absoluteOffset
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableIntState
 import androidx.compose.runtime.mutableIntStateOf
@@ -21,24 +18,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import it.fast4x.rimusic.R
 import it.fast4x.rimusic.enums.NavRoutes
 import it.fast4x.rimusic.ui.components.themed.SmartMessage
-import it.fast4x.rimusic.ui.styling.favoritesIcon
-import it.fast4x.rimusic.utils.semiBold
-import it.fast4x.rimusic.utils.bold
-import it.fast4x.rimusic.utils.color
 import it.fast4x.rimusic.ui.components.themed.Button
 import it.fast4x.rimusic.colorPalette
 import it.fast4x.rimusic.getAudioQualityFormat
 import it.fast4x.rimusic.isDebugModeEnabled
 import it.fast4x.rimusic.isParentalControlEnabled
-import it.fast4x.rimusic.typography
 import it.fast4x.rimusic.utils.isAtLeastAndroid7
 import org.dailyislam.android.utilities.getNetworkType
 
@@ -83,57 +74,40 @@ private fun appIconLongClickAction(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun AppLogo(
-    navController: NavController,
-    context: Context
-) {
-    val countToReveal = remember { mutableIntStateOf(0) }
-    val modifier = Modifier.combinedClickable(
-        onClick = { appIconClickAction( navController, countToReveal, context ) },
-        onLongClick = { appIconLongClickAction( navController, context ) }
-    )
-
-    Button(
-        iconId = R.drawable.app_icon,
-        color = colorPalette().favoritesIcon,
-        padding = 0.dp,
-        size = 36.dp,
-        modifier = modifier
-    ).Draw()
-}
-
-@Composable
-private fun AppLogoText( navController: NavController ) {
-    val iconTextClick: () -> Unit = {
-        if ( NavRoutes.home.isNotHere( navController ) )
-            navController.navigate(NavRoutes.home.name)
-    }
-
-
-
-    Button(
-        iconId = R.drawable.app_logo_text,
-        color = AppBar.contentColor(),
-        padding = 0.dp,
-        size = 36.dp,
-        forceWidth = 100.dp,
-        modifier = Modifier.clickable { iconTextClick() }
-    ).Draw()
-}
-
-
-@Composable
 fun AppTitle(
     navController: NavController,
     context: Context
 ) {
+    val countToReveal = remember { mutableIntStateOf(0) }
+    val logoClickModifier = Modifier.combinedClickable(
+        onClick = {
+            if (NavRoutes.home.isNotHere(navController)) {
+                navController.navigate(NavRoutes.home.name)
+            } else {
+                appIconClickAction(navController, countToReveal, context)
+            }
+        },
+        onLongClick = { appIconLongClickAction(navController, context) }
+    )
+
     Row(
-        horizontalArrangement = Arrangement.spacedBy( 5.dp ),
-        verticalAlignment = Alignment.CenterVertically
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(vertical = 4.dp)
     ) {
-        AppLogo( navController, context )
-        Box {
-            AppLogoText( navController )
+        Box(
+            modifier = logoClickModifier,
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Image(
+                painter = painterResource(R.drawable.pacoca_logo_header),
+                contentDescription = "PaçocaMusic",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .height(40.dp)
+                    .padding(end = 6.dp)
+            )
+
             if (isAtLeastAndroid7) {
                 val dataTypeIcon = when (getNetworkType(context)) {
                     "WIFI" -> R.drawable.datawifi
@@ -145,7 +119,7 @@ fun AppTitle(
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(colorPalette().text),
                     modifier = Modifier
-                        .size(12.dp)
+                        .size(11.dp)
                         .align(Alignment.TopEnd)
                 )
             }
@@ -154,9 +128,9 @@ fun AppTitle(
                 contentDescription = null,
                 colorFilter = ColorFilter.tint(getAudioQualityFormat().color),
                 modifier = Modifier
-                    .size(12.dp)
+                    .size(10.dp)
                     .align(Alignment.TopEnd)
-                    .absoluteOffset(0.dp, (-10).dp)
+                    .absoluteOffset(0.dp, (-8).dp)
             )
 
             if (isDebugModeEnabled())
@@ -165,12 +139,12 @@ fun AppTitle(
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(colorPalette().red),
                     modifier = Modifier
-                        .size(12.dp)
+                        .size(11.dp)
                         .align(Alignment.BottomEnd)
                 )
         }
 
-        if(isParentalControlEnabled())
+        if (isParentalControlEnabled())
             Button(
                 iconId = R.drawable.shield_checkmark,
                 color = AppBar.contentColor(),
@@ -178,5 +152,4 @@ fun AppTitle(
                 size = 20.dp
             ).Draw()
     }
-
 }

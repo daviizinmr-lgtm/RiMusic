@@ -633,7 +633,7 @@ class MainActivity :
                 ) {
                     with(preferences) {
                         val colorPaletteName =
-                            getEnum(colorPaletteNameKey, ColorPaletteName.Dynamic)
+                            getEnum(colorPaletteNameKey, ColorPaletteName.Default)
                         //val colorPaletteMode = getEnum(colorPaletteModeKey, ColorPaletteMode.Dark)
                         val thumbnailRoundness =
                             getEnum(thumbnailRoundnessKey, ThumbnailRoundness.Heavy)
@@ -685,7 +685,7 @@ class MainActivity :
                         PlayerBackgroundColors.BlurredCoverColor
                     )
                     val colorPaletteName =
-                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Dynamic)
+                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Default)
                     val isDynamicPalette = colorPaletteName == ColorPaletteName.Dynamic
                     val isCoverColor =
                         playerBackgroundColors == PlayerBackgroundColors.CoverColorGradient ||
@@ -810,7 +810,7 @@ class MainActivity :
                                     val colorPaletteName =
                                         sharedPreferences.getEnum(
                                             colorPaletteNameKey,
-                                            ColorPaletteName.Dynamic
+                                            ColorPaletteName.Default
                                         )
 
 //                                val colorPaletteMode =
@@ -940,7 +940,7 @@ class MainActivity :
                         registerOnSharedPreferenceChangeListener(listener)
 
                         val colorPaletteName =
-                            getEnum(colorPaletteNameKey, ColorPaletteName.Dynamic)
+                            getEnum(colorPaletteNameKey, ColorPaletteName.Default)
                         if (colorPaletteName == ColorPaletteName.Dynamic) {
                             setDynamicPalette(
                                 (binder?.player?.currentMediaItem?.mediaMetadata?.artworkUri.thumbnail(
@@ -983,7 +983,7 @@ class MainActivity :
 
                 LaunchedEffect(Unit) {
                     val colorPaletteName =
-                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Dynamic)
+                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Default)
                     if (colorPaletteName == ColorPaletteName.Customized) {
                         appearance = appearance.copy(
                             colorPalette = customColorPalette(
@@ -1504,7 +1504,7 @@ class MainActivity :
         isInitialChange: Boolean
     ) {
         val colorPaletteName =
-            preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Dynamic)
+            preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Default)
         if (!isInitialChange && colorPaletteName == ColorPaletteName.MaterialYou) {
             /*
             monet.updateMonetColors()

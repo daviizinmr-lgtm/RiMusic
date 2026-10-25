@@ -95,7 +95,7 @@ class HorizontalNavigationBar(
         buttons { index, text, iconId ->
 
             val color by transition.animateColor(label = "") {
-                if (it == index) colorPalette().text else colorPalette().textDisabled
+                if (it == index) colorPalette().accent else colorPalette().textSecondary
             }
 
             val button: Button =

@@ -28,6 +28,11 @@ import it.fast4x.rimusic.ui.components.themed.Title
 import it.fast4x.rimusic.ui.styling.Dimensions
 import it.fast4x.rimusic.utils.getVersionName
 import it.fast4x.rimusic.utils.secondary
+import it.fast4x.rimusic.utils.bold
+import it.fast4x.rimusic.utils.color
+import it.fast4x.rimusic.utils.semiBold
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 import it.fast4x.rimusic.colorPalette
 import it.fast4x.rimusic.typography
 

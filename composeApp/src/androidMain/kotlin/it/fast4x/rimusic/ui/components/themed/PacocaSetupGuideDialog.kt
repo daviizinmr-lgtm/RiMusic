@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -19,7 +20,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
@@ -27,8 +27,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import it.fast4x.rimusic.R
 import it.fast4x.rimusic.colorPalette
 import it.fast4x.rimusic.typography
 import it.fast4x.rimusic.utils.bold
@@ -44,8 +47,8 @@ fun PacocaSetupGuideDialog(
     DefaultDialog(
         onDismiss = onDismiss,
         modifier = Modifier
-            .fillMaxWidth(0.94f)
-            .padding(vertical = 12.dp)
+            .fillMaxWidth(0.95f)
+            .padding(vertical = 10.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -53,62 +56,91 @@ fun PacocaSetupGuideDialog(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            // Emblema Superior do PaçocaMusic
+            // Imagem Oficial do Mascote da Paçoca
+            Image(
+                painter = painterResource(R.drawable.pacoca_setup_icon),
+                contentDescription = "Mascote PaçocaMusic",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(95.dp)
+                    .padding(top = 4.dp, bottom = 4.dp)
+            )
+
+            BasicText(
+                text = "PaçocaMusic",
+                style = typography().xl.bold.color(colorPalette().accent)
+            )
+
+            // Badge de Créditos do Criador Davi C.
             Box(
                 modifier = Modifier
-                    .size(68.dp)
-                    .clip(CircleShape)
-                    .background(colorPalette().accent.copy(alpha = 0.18f))
-                    .border(2.dp, colorPalette().accent, CircleShape),
-                contentAlignment = Alignment.Center
+                    .padding(vertical = 6.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(colorPalette().background2)
+                    .border(1.dp, colorPalette().accent.copy(alpha = 0.5f), RoundedCornerShape(20.dp))
+                    .padding(horizontal = 14.dp, vertical = 5.dp)
             ) {
                 BasicText(
-                    text = "🥜",
-                    style = typography().xxl.bold
+                    text = "✨ Desenvolvido & Customizado por Davi C.",
+                    style = typography().xxs.bold.color(colorPalette().accent)
                 )
             }
 
-            Spacer(modifier = Modifier.height(14.dp))
-
             BasicText(
-                text = "Bem-vindo ao PaçocaMusic!",
-                style = typography().l.bold.color(colorPalette().accent)
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            BasicText(
-                text = "Seu streaming brasileiro de alta fidelidade, 100% livre, sem anúncios e com reprodução em segundo plano.",
+                text = "Streaming brasileiro livre, sem anúncios e com reprodução em segundo plano.",
                 style = typography().xs.color(colorPalette().textSecondary),
-                modifier = Modifier.padding(horizontal = 4.dp)
-            )
-
-            Spacer(modifier = Modifier.height(18.dp))
-
-            // Destaque 1: Tema Dark
-            SetupGuideItem(
-                emoji = "🌙",
-                title = "Tema Dark AMOLED",
-                description = "Visual escuro com detalhes em caramelo paçoca, garantindo máxima economia de bateria e conforto visual."
+                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
             )
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            // Destaque 2: Segundo Plano & Tela Desligada
-            SetupGuideItem(
-                emoji = "🎧",
-                title = "Segundo Plano & Tela Desligada",
-                description = "Suas músicas continuam tocando normalmente quando você sai do app ou desliga a tela do celular."
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            // Card interativo para desativar otimização de bateria
+            // Seção de Changelog & Patches Aplicados
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(12.dp))
                     .background(colorPalette().background2)
+                    .padding(12.dp)
+            ) {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    BasicText(
+                        text = "🚀 Melhorias & Patches Aplicados (v1.0)",
+                        style = typography().xs.bold.color(colorPalette().text),
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    ChangelogItem(
+                        icon = "🎨",
+                        title = "Nova Interface Estilo Spotify / YTM",
+                        desc = "Dark AMOLED puro sem cores borradas, abas espaçadas e novo logo oficial."
+                    )
+                    ChangelogItem(
+                        icon = "🎧",
+                        title = "Segundo Plano & Tela Desligada",
+                        desc = "Suas músicas tocam sem interrupção mesmo com o celular bloqueado."
+                    )
+                    ChangelogItem(
+                        icon = "🇧🇷",
+                        title = "100% Brasil em Primeiro Lugar",
+                        desc = "Tendências, lançamentos e paradas musicais nacionais automáticas."
+                    )
+                    ChangelogItem(
+                        icon = "⚡",
+                        title = "Zero Anúncios & Cache Otimizado",
+                        desc = "Músicas sem propagandas e carregamento veloz sem engasgos."
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Card Interativo para Desativar Otimização de Bateria
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(colorPalette().background1)
+                    .border(1.dp, colorPalette().accent.copy(alpha = 0.35f), RoundedCornerShape(12.dp))
                     .clickable {
                         try {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -130,7 +162,7 @@ fun PacocaSetupGuideDialog(
                             } catch (_: Exception) {}
                         }
                     }
-                    .padding(horizontal = 14.dp, vertical = 12.dp)
+                    .padding(horizontal = 14.dp, vertical = 10.dp)
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -139,34 +171,25 @@ fun PacocaSetupGuideDialog(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         BasicText(
-                            text = "🔋 Otimização de Bateria",
+                            text = "🔋 Otimização de Bateria (Tela Apagada)",
                             style = typography().xs.semiBold.color(colorPalette().accent)
                         )
                         BasicText(
-                            text = "Toque aqui para desativar restrições do Android e evitar pausas com a tela apagada.",
+                            text = "Toque para impedir que o Android pause a música após alguns minutos em segundo plano.",
                             style = typography().xxs.color(colorPalette().textSecondary)
                         )
                     }
                     BasicText(
-                        text = "Ajustar",
+                        text = "Configurar",
                         style = typography().xs.bold.color(colorPalette().accent),
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(14.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
-            // Destaque 3: Brasil em Primeiro Lugar
-            SetupGuideItem(
-                emoji = "🇧🇷",
-                title = "Conteúdo Nacional Integrado",
-                description = "Músicas em alta, sucessos e tendências do Brasil carregadas automaticamente na sua tela inicial."
-            )
-
-            Spacer(modifier = Modifier.height(22.dp))
-
-            // Botão Concluir Setup
+            // Botão Começar a Curtir
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -186,19 +209,21 @@ fun PacocaSetupGuideDialog(
 }
 
 @Composable
-private fun SetupGuideItem(
-    emoji: String,
+private fun ChangelogItem(
+    icon: String,
     title: String,
-    description: String
+    desc: String
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
         verticalAlignment = Alignment.Top
     ) {
         BasicText(
-            text = emoji,
-            style = typography().m,
-            modifier = Modifier.padding(end = 12.dp, top = 2.dp)
+            text = icon,
+            style = typography().s,
+            modifier = Modifier.padding(end = 8.dp, top = 1.dp)
         )
         Column(modifier = Modifier.weight(1f)) {
             BasicText(
@@ -206,7 +231,7 @@ private fun SetupGuideItem(
                 style = typography().xs.semiBold.color(colorPalette().text)
             )
             BasicText(
-                text = description,
+                text = desc,
                 style = typography().xxs.color(colorPalette().textSecondary)
             )
         }
