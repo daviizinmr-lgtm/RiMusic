@@ -31,6 +31,8 @@ import it.fast4x.rimusic.enums.NavRoutes
 import it.fast4x.rimusic.ui.components.themed.SmartMessage
 import it.fast4x.rimusic.ui.styling.favoritesIcon
 import it.fast4x.rimusic.utils.semiBold
+import it.fast4x.rimusic.utils.bold
+import it.fast4x.rimusic.utils.color
 import it.fast4x.rimusic.ui.components.themed.Button
 import it.fast4x.rimusic.colorPalette
 import it.fast4x.rimusic.getAudioQualityFormat
@@ -55,7 +57,7 @@ private fun appIconClickAction(
                 ""
             }
             3 -> "Do you like clicking? Then continue..."
-            6 -> "Okay, you’re looking for something, keep..."
+            6 -> "Okay, you're looking for something, keep..."
             9 -> "You are a number one, click and enjoy the surprise"
             else -> ""
         }

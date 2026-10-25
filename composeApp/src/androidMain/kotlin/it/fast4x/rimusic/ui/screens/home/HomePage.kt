@@ -238,7 +238,7 @@ fun HomePage(
     val last50Year: Duration = 18250.days
     val from = last50Year.inWholeMilliseconds
 
-    var selectedCountryCode by rememberPreference(selectedCountryCodeKey, Countries.ZZ)
+    var selectedCountryCode by rememberPreference(selectedCountryCodeKey, Countries.BR)
 
     val parentalControlEnabled by rememberPreference(parentalControlEnabledKey, false)
 
@@ -1383,5 +1383,6 @@ fun HomePage(
 
     }
 }
+
 
 

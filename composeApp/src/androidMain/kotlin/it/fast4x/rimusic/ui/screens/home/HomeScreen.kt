@@ -43,6 +43,8 @@ import kotlinx.coroutines.launch
 import it.fast4x.rimusic.ui.components.Skeleton
 import it.fast4x.rimusic.ui.screens.settings.isYouTubeLoggedIn
 import it.fast4x.rimusic.utils.InitializeEnvironment
+import it.fast4x.rimusic.ui.components.themed.PacocaSetupGuideDialog
+import it.fast4x.rimusic.utils.showPacocaSetupGuideKey
 import kotlin.system.exitProcess
 
 
@@ -221,6 +223,13 @@ fun HomeScreen(
             onConfirm = { checkUpdateState = CheckUpdateState.Enabled },
         )
 
+    var showPacocaSetupGuide by rememberPreference(showPacocaSetupGuideKey, true)
+    if (showPacocaSetupGuide) {
+        PacocaSetupGuideDialog(
+            onDismiss = { showPacocaSetupGuide = false }
+        )
+    }
+
     // Exit app when user uses back
     val context = LocalContext.current
     var confirmCount by remember { mutableIntStateOf( 0 ) }
@@ -253,3 +262,4 @@ fun HomeScreen(
         }
     }
 }
+

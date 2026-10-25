@@ -374,14 +374,14 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
-            manifestPlaceholders["appName"] = "RiMusic-Debug"
+            manifestPlaceholders["appName"] = "PaçocaMusic"
         }
 
         release {
             vcsInfo.include = false
             isMinifyEnabled = true
             isShrinkResources = true
-            manifestPlaceholders["appName"] = "RiMusic"
+            manifestPlaceholders["appName"] = "PaçocaMusic"
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -393,7 +393,7 @@ android {
             .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
             .forEach { output ->
                 //val outputFileName = "app-${variant.baseName}-${variant.versionName}-${variant.versionCode}.apk"
-                val outputFileName = "rimusic-${variant.baseName}.apk"
+                val outputFileName = "PacocaMusic-${variant.baseName}.apk"
                 output.outputFileName = outputFileName
             }
     }
@@ -407,7 +407,7 @@ android {
     productFlavors {
         create("accrescent") {
             dimension = "version"
-            manifestPlaceholders["appName"] = "RiMusic-Acc"
+            manifestPlaceholders["appName"] = "PaçocaMusic-Acc"
         }
     }
 
@@ -563,3 +563,4 @@ dependencies {
     coreLibraryDesugaring(libs.desugaring.nio)
 
 }
+

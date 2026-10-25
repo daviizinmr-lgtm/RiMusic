@@ -25,7 +25,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RiMusic"
+rootProject.name = "PacocaMusic"
 include(":composeApp")
 include(":compose-persist")
 // Projects from extensions
@@ -41,4 +41,5 @@ include(":piped")
 project(":piped").projectDir = file("extensions/piped")
 include(":invidious")
 project(":invidious").projectDir = file("extensions/invidious")
+
 
