@@ -1,4 +1,4 @@
-name: Compilar PaçocaMusic APK
+﻿name: Compilar PacocaMusic APK
 
 on:
   push:
@@ -7,11 +7,11 @@ on:
 
 jobs:
   build:
-    name: Build PaçocaMusic APK
+    name: Build PacocaMusic APK
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Código
+      - name: Checkout Codigo
         uses: actions/checkout@v4
 
       - name: Configurar JDK 21
@@ -21,7 +21,7 @@ jobs:
           distribution: "corretto"
           cache: gradle
 
-      - name: Permissão de execução para gradlew
+      - name: Permissao de execucao para gradlew
         run: chmod +x gradlew
 
       - name: Compilar APK (Full Debug)

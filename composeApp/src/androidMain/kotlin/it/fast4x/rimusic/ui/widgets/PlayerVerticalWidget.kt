@@ -1,4 +1,4 @@
-package it.fast4x.rimusic.ui.widgets
+﻿package it.fast4x.rimusic.ui.widgets
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -83,7 +83,7 @@ fun WidgetContent()  {
     when (playerIsActive) {
         true -> WidgetActiveContent()
         false -> {
-            Text(text = "RiMusic Player is not active", modifier = GlanceModifier.padding(12.dp))
+            Text(text = "PaçocaMusic Player is not active", modifier = GlanceModifier.padding(12.dp))
         }
     }
 

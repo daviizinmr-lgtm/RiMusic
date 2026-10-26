@@ -1,4 +1,4 @@
-package it.fast4x.rimusic.ui.screens.settings
+﻿package it.fast4x.rimusic.ui.screens.settings
 
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
@@ -236,7 +236,7 @@ fun DataSettings() {
                 @SuppressLint("SimpleDateFormat")
                 val dateFormat = SimpleDateFormat("yyyyMMddHHmmss")
                 try {
-                    backupLauncher.launch("rimusic_${dateFormat.format(Date())}.db")
+                    backupLauncher.launch("pacocamusic_${dateFormat.format(Date())}.db")
                 } catch (e: ActivityNotFoundException) {
                     SmartMessage(context.resources.getString(R.string.info_not_find_app_create_doc), type = PopupType.Warning, context = context)
                 }

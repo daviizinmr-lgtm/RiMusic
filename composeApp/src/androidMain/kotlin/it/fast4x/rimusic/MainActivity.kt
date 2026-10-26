@@ -1,4 +1,4 @@
-package it.fast4x.rimusic
+﻿package it.fast4x.rimusic
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -510,7 +510,7 @@ class MainActivity :
 
                 val colorPaletteMode by rememberPreference(
                     colorPaletteModeKey,
-                    ColorPaletteMode.Dark
+                    ColorPaletteMode.PitchBlack
                 )
                 val isPicthBlack = colorPaletteMode == ColorPaletteMode.PitchBlack
 
@@ -633,8 +633,8 @@ class MainActivity :
                 ) {
                     with(preferences) {
                         val colorPaletteName =
-                            getEnum(colorPaletteNameKey, ColorPaletteName.Default)
-                        //val colorPaletteMode = getEnum(colorPaletteModeKey, ColorPaletteMode.Dark)
+                            getEnum(colorPaletteNameKey, ColorPaletteName.PureBlack)
+                        //val colorPaletteMode = getEnum(colorPaletteModeKey, ColorPaletteMode.PitchBlack)
                         val thumbnailRoundness =
                             getEnum(thumbnailRoundnessKey, ThumbnailRoundness.Heavy)
                         val useSystemFont = getBoolean(useSystemFontKey, false)
@@ -685,7 +685,7 @@ class MainActivity :
                         PlayerBackgroundColors.BlurredCoverColor
                     )
                     val colorPaletteName =
-                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Default)
+                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.PureBlack)
                     val isDynamicPalette = colorPaletteName == ColorPaletteName.Dynamic
                     val isCoverColor =
                         playerBackgroundColors == PlayerBackgroundColors.CoverColorGradient ||
@@ -707,7 +707,7 @@ class MainActivity :
                         )
                         val isPicthBlack = colorPaletteMode == ColorPaletteMode.PitchBlack
                         val isDark =
-                            colorPaletteMode == ColorPaletteMode.Dark || isPicthBlack || (colorPaletteMode == ColorPaletteMode.System && isSystemInDarkTheme)
+                            colorPaletteMode == ColorPaletteMode.PitchBlack || isPicthBlack || (colorPaletteMode == ColorPaletteMode.System && isSystemInDarkTheme)
 
                         val bitmap = (result.drawable as? BitmapDrawable)?.bitmap
                         if (bitmap != null) {
@@ -940,7 +940,7 @@ class MainActivity :
                         registerOnSharedPreferenceChangeListener(listener)
 
                         val colorPaletteName =
-                            getEnum(colorPaletteNameKey, ColorPaletteName.Default)
+                            getEnum(colorPaletteNameKey, ColorPaletteName.PureBlack)
                         if (colorPaletteName == ColorPaletteName.Dynamic) {
                             setDynamicPalette(
                                 (binder?.player?.currentMediaItem?.mediaMetadata?.artworkUri.thumbnail(
@@ -983,7 +983,7 @@ class MainActivity :
 
                 LaunchedEffect(Unit) {
                     val colorPaletteName =
-                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Default)
+                        preferences.getEnum(colorPaletteNameKey, ColorPaletteName.PureBlack)
                     if (colorPaletteName == ColorPaletteName.Customized) {
                         appearance = appearance.copy(
                             colorPalette = customColorPalette(
@@ -1504,7 +1504,7 @@ class MainActivity :
         isInitialChange: Boolean
     ) {
         val colorPaletteName =
-            preferences.getEnum(colorPaletteNameKey, ColorPaletteName.Default)
+            preferences.getEnum(colorPaletteNameKey, ColorPaletteName.PureBlack)
         if (!isInitialChange && colorPaletteName == ColorPaletteName.MaterialYou) {
             /*
             monet.updateMonetColors()

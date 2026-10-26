@@ -1,4 +1,4 @@
-package it.fast4x.rimusic.ui.components.themed
+﻿package it.fast4x.rimusic.ui.components.themed
 
 import androidx.compose.animation.core.EaseInOut
 import androidx.compose.animation.core.animateFloatAsState
@@ -1218,7 +1218,7 @@ fun NewVersionDialog (
                         .size(30.dp)
                         .clickable {
                             onDismiss()
-                            uriHandler.openUri("https://github.com/fast4x/RiMusic/releases/latest")
+                            uriHandler.openUri("https://github.com/daviizinmr-lgtm/RiMusic/releases/latest")
                         }
                 )
             }
@@ -1245,7 +1245,7 @@ fun NewVersionDialog (
                         .size(30.dp)
                         .clickable {
                             onDismiss()
-                            uriHandler.openUri("https://github.com/fast4x/RiMusic/releases/download/$updatedVersionName/rimusic-full-release.apk")
+                            uriHandler.openUri("https://github.com/daviizinmr-lgtm/RiMusic/releases/latest")
                         }
                 )
             }

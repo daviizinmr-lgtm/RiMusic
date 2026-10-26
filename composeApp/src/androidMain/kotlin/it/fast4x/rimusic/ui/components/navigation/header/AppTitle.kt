@@ -1,4 +1,4 @@
-package it.fast4x.rimusic.ui.components.navigation.header
+﻿package it.fast4x.rimusic.ui.components.navigation.header
 
 import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -101,7 +101,7 @@ fun AppTitle(
         ) {
             Image(
                 painter = painterResource(R.drawable.pacoca_logo_header),
-                contentDescription = "PaçocaMusic",
+                contentDescription = "PacocaMusic",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .height(40.dp)

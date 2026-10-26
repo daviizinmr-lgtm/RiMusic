@@ -1,4 +1,4 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+﻿import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -374,14 +374,14 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
-            manifestPlaceholders["appName"] = "PaçocaMusic"
+            manifestPlaceholders["appName"] = "PacocaMusic"
         }
 
         release {
             vcsInfo.include = false
             isMinifyEnabled = true
             isShrinkResources = true
-            manifestPlaceholders["appName"] = "PaçocaMusic"
+            manifestPlaceholders["appName"] = "PacocaMusic"
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -407,7 +407,7 @@ android {
     productFlavors {
         create("accrescent") {
             dimension = "version"
-            manifestPlaceholders["appName"] = "PaçocaMusic-Acc"
+            manifestPlaceholders["appName"] = "PacocaMusic-Acc"
         }
     }
 

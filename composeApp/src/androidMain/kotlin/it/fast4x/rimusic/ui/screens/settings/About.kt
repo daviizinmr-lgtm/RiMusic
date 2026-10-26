@@ -1,52 +1,53 @@
-package it.fast4x.rimusic.ui.screens.settings
+﻿package it.fast4x.rimusic.ui.screens.settings
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import it.fast4x.rimusic.R
+import it.fast4x.rimusic.colorPalette
 import it.fast4x.rimusic.enums.NavigationBarPosition
 import it.fast4x.rimusic.extensions.contributors.ShowDevelopers
 import it.fast4x.rimusic.extensions.contributors.ShowTranslators
 import it.fast4x.rimusic.extensions.contributors.countDevelopers
 import it.fast4x.rimusic.extensions.contributors.countTranslators
+import it.fast4x.rimusic.typography
 import it.fast4x.rimusic.ui.components.themed.HeaderWithIcon
 import it.fast4x.rimusic.ui.components.themed.Title
 import it.fast4x.rimusic.ui.styling.Dimensions
-import it.fast4x.rimusic.utils.getVersionName
-import it.fast4x.rimusic.utils.secondary
 import it.fast4x.rimusic.utils.bold
 import it.fast4x.rimusic.utils.color
+import it.fast4x.rimusic.utils.getVersionName
+import it.fast4x.rimusic.utils.secondary
 import it.fast4x.rimusic.utils.semiBold
-import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.unit.dp
-import it.fast4x.rimusic.colorPalette
-import it.fast4x.rimusic.typography
-
 
 @ExperimentalAnimationApi
 @Composable
 fun About() {
     val uriHandler = LocalUriHandler.current
-    //val context = LocalContext.current
 
     Column(
         modifier = Modifier
             .background(colorPalette().background0)
-            //.fillMaxSize()
             .fillMaxHeight()
             .fillMaxWidth(
                 if (NavigationBarPosition.Right.isCurrent())
@@ -55,14 +56,6 @@ fun About() {
                     1f
             )
             .verticalScroll(rememberScrollState())
-            /*
-            .padding(
-                LocalPlayerAwareWindowInsets.current
-                    .only(WindowInsetsSides.Vertical + WindowInsetsSides.End)
-                    .asPaddingValues()
-            )
-
-             */
     ) {
         HeaderWithIcon(
             title = stringResource(R.string.about),
@@ -72,79 +65,62 @@ fun About() {
             modifier = Modifier,
             onClick = {}
         )
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .padding(vertical = 12.dp, horizontal = 16.dp)
         ) {
             BasicText(
-                text = "RiMusic v${getVersionName()} by fast4x",
-                style = typography().s.secondary,
+                text = "PaçocaMusic",
+                style = typography().xl.bold.color(colorPalette().text)
+            )
+            BasicText(
+                text = "Versão ${getVersionName()} (Build Oficial)",
+                style = typography().xs.secondary
+            )
 
+            Box(
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(colorPalette().background2)
+                    .border(1.dp, colorPalette().accent.copy(alpha = 0.5f), RoundedCornerShape(20.dp))
+                    .padding(horizontal = 16.dp, vertical = 6.dp)
+            ) {
+                BasicText(
+                    text = "Criado e customizado por Davi C.",
+                    style = typography().xs.bold.color(colorPalette().accent)
                 )
+            }
         }
 
         SettingsGroupSpacer()
 
-        SettingsEntryGroupText(title = stringResource(R.string.social))
+        SettingsEntryGroupText(title = "Sobre o Projeto")
 
         SettingsEntry(
-            title = stringResource(R.string.social_telegram),
-            text = stringResource(R.string.social_telegram_info),
+            title = "Código-fonte no GitHub",
+            text = "Repositório oficial PaçocaMusic",
             onClick = {
-                uriHandler.openUri("https://t.me/rimusic_app")
+                uriHandler.openUri("https://github.com/daviizinmr-lgtm/RiMusic")
             }
         )
 
         SettingsEntry(
-            title = stringResource(R.string.social_reddit),
-            text = stringResource(R.string.social_reddit_info),
+            title = "Reportar um Bug ou Problema",
+            text = "Abrir ticket no repositório de Davi C.",
             onClick = {
-                uriHandler.openUri("https://www.reddit.com/r/RiMusicApp/")
+                uriHandler.openUri("https://github.com/daviizinmr-lgtm/RiMusic/issues")
             }
         )
 
         SettingsEntry(
-            title = stringResource(R.string.social_discord),
-            text = stringResource(R.string.social_discord_info),
+            title = "Sugerir Nova Função ou Melhoria",
+            text = "Deixe sua ideia para as próximas atualizações",
             onClick = {
-                uriHandler.openUri("https://discord.gg/h7eS2PcGeW")
-            }
-        )
-
-        SettingsGroupSpacer()
-
-        SettingsEntryGroupText(title = "Official Project Page")
-
-        SettingsEntry(
-            title = stringResource(R.string.social_github),
-            text = stringResource(R.string.view_the_source_code),
-            onClick = {
-                uriHandler.openUri("https://github.com/fast4x/RiMusic")
-            }
-        )
-
-
-
-        SettingsGroupSpacer()
-
-        SettingsEntryGroupText(title = stringResource(R.string.troubleshooting))
-
-        SettingsEntry(
-            title = stringResource(R.string.report_an_issue),
-            text = stringResource(R.string.you_will_be_redirected_to_github),
-            onClick = {
-                uriHandler.openUri("https://github.com/fast4x/RiMusic/issues/new?assignees=&labels=bug&template=bug_report.yaml")
-            }
-        )
-
-
-        SettingsEntry(
-            title = stringResource(R.string.request_a_feature_or_suggest_an_idea),
-            text = stringResource(R.string.you_will_be_redirected_to_github),
-            onClick = {
-                uriHandler.openUri("https://github.com/fast4x/RiMusic/issues/new?assignees=&labels=feature_request&template=feature_request.yaml")
+                uriHandler.openUri("https://github.com/daviizinmr-lgtm/RiMusic/issues")
             }
         )
 
@@ -160,7 +136,7 @@ fun About() {
 
         SettingsGroupSpacer()
 
-        SettingsEntryGroupText(title = "${ countDevelopers() } " + "Developers / Designers")
+        SettingsEntryGroupText(title = "${ countDevelopers() } " + "Desenvolvedores & Colaboradores")
         SettingsDescription(text = stringResource(R.string.in_alphabetical_order))
         ShowDevelopers()
 

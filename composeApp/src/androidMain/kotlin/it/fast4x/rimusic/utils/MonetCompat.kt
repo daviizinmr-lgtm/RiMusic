@@ -1,4 +1,4 @@
-package it.fast4x.rimusic.utils
+﻿package it.fast4x.rimusic.utils
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.toArgb
@@ -24,7 +24,7 @@ inline fun MonetCompat.invokeOnReady(
     }
 }
 
-fun MonetCompat.setDefaultPalette(palette: ColorPalette = DefaultLightColorPalette) {
+fun MonetCompat.setDefaultPalette(palette: ColorPalette = DefaultDarkColorPalette) {
     defaultAccentColor = palette.accent.toArgb()
     defaultBackgroundColor = palette.background0.toArgb()
     defaultPrimaryColor = palette.background1.toArgb()

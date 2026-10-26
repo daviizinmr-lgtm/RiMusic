@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
@@ -173,13 +173,13 @@
     <string name="social">SOCIAL</string>
     <string name="english">English</string>
     <string name="italian">Italian (Italiano)</string>
-    <string name="czech">Czech (Čeština)</string>
+    <string name="czech">Czech (ÄŒeÅ¡tina)</string>
     <string name="german">German (Deutsch)</string>
-    <string name="spanish">Spanish (Español)</string>
-    <string name="french">French (Français)</string>
-    <string name="romanian">Romanian (Română)</string>
-    <string name="russian">Russian (Русский)</string>
-    <string name="turkish">Turkish (Türkçe)</string>
+    <string name="spanish">Spanish (EspaÃ±ol)</string>
+    <string name="french">French (FranÃ§ais)</string>
+    <string name="romanian">Romanian (RomÃ¢nÄƒ)</string>
+    <string name="russian">Russian (Ð ÑƒÑÑÐºÐ¸Ð¹)</string>
+    <string name="turkish">Turkish (TÃ¼rkÃ§e)</string>
     <string name="polish">Polish (Polski)</string>
     <string name="dark">Dark</string>
     <string name="system">System</string>
@@ -660,7 +660,7 @@
     <string name="past_month">Past month</string>
     <string name="past_year">Past year</string>
     <string name="all_time">All time</string>
-    <string name="header_view_top_of">View top %s of …</string>
+    <string name="header_view_top_of">View top %s of â€¦</string>
     <string name="podcast_episodes">Episodes</string>
     <string name="podcasts">Podcasts</string>
     <string name="playlistindicator">Playlist Indicator</string>
@@ -920,7 +920,7 @@
     <string name="please_wait">Please Wait</string>
     <string name="songs_liked_yt">Song(s) are Liked in YouTube</string>
     <string name="song_unliked_yt">Song is Unliked in YouTube</string>
-    <string name="add_rimusic_to_ytm_favorites">Like RiMusic Liked songs in Youtube</string>
+    <string name="add_rimusic_to_ytm_favorites">Like PaçocaMusic Liked songs in Youtube</string>
     <string name="do_you_really_want_to_like_all_rimusictoytmusic">(estimated time) is required to like all the songs. This action cannot be resumed if cancelled in between. You need to close the app to cancel this process. Do you want to continue?</string>
     <string name="do_you_really_want_to_like_all">(estimated time) is required to like all the songs. You need to close the app to cancel this process. Do you want to continue?</string>
     <string name="songs_liked_yt_failed">Failed to like the song in YouTube</string>

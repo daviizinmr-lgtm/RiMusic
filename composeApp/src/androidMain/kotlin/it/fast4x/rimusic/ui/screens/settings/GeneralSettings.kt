@@ -1,4 +1,4 @@
-package it.fast4x.rimusic.ui.screens.settings
+﻿package it.fast4x.rimusic.ui.screens.settings
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -599,7 +599,7 @@ fun GeneralSettings(
                         )
                     } catch (e: ActivityNotFoundException) {
                         SmartMessage(
-                            "$msgNoBatteryOptim RiMusic",
+                            "$msgNoBatteryOptim PaçocaMusic",
                             type = PopupType.Info,
                             context = context
                         )
